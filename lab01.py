@@ -44,7 +44,30 @@ def shipping_cost_calculator():
     )
 
 def grade_classifier():
-    pass
+    try:
+        mark = float(
+            input("Enter a grade from 0 to 100: ")
+        )
+        if mark < 0 or mark > 100:
+            print("Grade must be between 0 and 100")
+            return
+    
+    except ValueError:
+        print("Invalid input please enter a numeric grade")
+        return
+
+    if mark >= 90:
+        letter_grade = "A"
+    elif mark >= 80:
+        letter_grade = "B"
+    elif mark >= 70:
+        letter_grade = "C"
+    elif mark >= 60:
+        letter_grade = "D"
+    else:
+        letter_grade = "F"
+
+    print(f"Your grade is {mark:.1f}% which is a {letter_grade}")
 
 def loan_affordability_check():
     pass
@@ -70,7 +93,7 @@ def main():
     elif choice == '4':
         bmi_category_reporter()
     else:
-        print("Invalid choice. Please select a valid option.")
+        print("Invalid choice please select a valid option")
 
 if __name__ == "__main__":
     main()
