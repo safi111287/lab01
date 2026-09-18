@@ -103,7 +103,37 @@ def loan_affordability_check():
     )
 
 def bmi_category_reporter():
-    pass
+    try:
+        height_cm = float(
+            input("Enter height in cm (greater than 0 and up to 300 cm): ")
+        )
+        if height_cm <= 0 or height_cm > 300:
+            print("Height must be greater than 0 and no more than 300 cm")
+            return
+    
+        weight = float(
+            input("Enter weight in kg (greater than 0 and up to 500 kg): ")
+        )
+        if weight <= 0 or weight > 500:
+            print("Weight must be greater than 0 and no more than 500 kg")
+            return
+
+    except ValueError:
+        print("Invalid input please enter numeric values only")
+        return
+
+    height_m = height_cm / 100
+    bmi = weight / (height_m ** 2)
+    if bmi < 18.5:
+        category = "Underweight"
+    elif bmi < 25:
+        category = "Normal weight"
+    elif bmi < 30:
+        category = "Overweight"
+    else:
+        category = "Obesity"
+
+    print(f"Your BMI is {bmi:.1f}, which falls in the {category} category")
 
 def main():
     print("Choose one option: ")
