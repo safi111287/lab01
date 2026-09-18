@@ -70,7 +70,37 @@ def grade_classifier():
     print(f"Your grade is {mark:.1f}% which is a {letter_grade}")
 
 def loan_affordability_check():
-    pass
+    try:
+        monthly_income = float(
+            input("Enter your monthly income (greater than 0): ")
+        )
+        if monthly_income <= 0:
+            print("Monthly income must be greater than 0")
+            return
+
+        monthly_payment = float(
+            input("Enter the proposed monthly payment (greater than 0): ")
+        )
+        if monthly_payment <= 0:
+            print("Monthly payment must be greater than 0")
+            return
+        
+    except ValueError:
+        print("Invalid input please enter numeric values only")
+        return
+
+    payment_to_income_ratio = monthly_payment / monthly_income
+    if payment_to_income_ratio <= 0.30:
+        affordability = "Affordable"
+    elif payment_to_income_ratio <= 0.40:
+        affordability = "Borderline"
+    else:
+        affordability = "Not affordable"
+
+    print(
+        f"Your payment to income ratio is {payment_to_income_ratio:.1%} "
+        f"This payment is considered {affordability}"
+    )
 
 def bmi_category_reporter():
     pass
